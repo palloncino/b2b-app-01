@@ -39,8 +39,8 @@ function App() {
   return (
     <AuthProvider>
       <AppStateProvider>
-        <Router>
-          <ThemeProvider>
+        <ThemeProvider>
+          <Router>
             <Navbar />
             <Container component="main" maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
               <Routes>
@@ -72,8 +72,8 @@ function App() {
                 </Route>
               </Routes>
             </Container>
-          </ThemeProvider>
-        </Router>
+          </Router>
+        </ThemeProvider>
       </AppStateProvider>
     </AuthProvider>
   );

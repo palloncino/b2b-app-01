@@ -3,15 +3,49 @@ import { AppBar, Toolbar, Typography, Button, IconButton, Avatar, Box, Divider }
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../state/authContext'; // Assuming you have an auth context
 import { useThemeContext } from '../../state/themeContext.js';
 
 function Navbar() {
+  const { user } = useAuth();
   const { toggleTheme, themeMode } = useThemeContext();
-  const navigate = useNavigate(); // Hook to handle navigation
+  const navigate = useNavigate();
 
   const handleAvatarClick = () => {
-    navigate('/user-management');
+    // Navigate based on role
+    if (user && user.role === 'admin') {
+      navigate('/user-management');
+    } else {
+      navigate('/profile');
+    }
   };
+
+  const renderVisitorLinks = () => (
+    <>
+      <Button color="inherit" component={RouterLink} to="/login">Login</Button>
+      <Button color="inherit" component={RouterLink} to="/signup">Sign Up</Button>
+    </>
+  );
+
+  const renderUserLinks = () => (
+    <>
+      <Button color="inherit" component={RouterLink} to="/product-archive">
+        Product Archive
+      </Button>
+      <IconButton onClick={handleAvatarClick} color="inherit">
+        <Avatar sx={{ width: 36, height: 36 }} src="/broken-image.jpg" />
+      </IconButton>
+    </>
+  );
+
+  const renderAdminLinks = () => (
+    <>
+      {renderUserLinks()}
+      <Button color="inherit" component={RouterLink} to="/create-product">
+        Create Product
+      </Button>
+    </>
+  );
 
   return (
     <AppBar position="static">
@@ -21,14 +55,11 @@ function Navbar() {
             🏡 HOMEPAGE
           </Button>
         </Typography>
-        <Button color="inherit" component={RouterLink} to="/product-archive">
-          Product Archive
-        </Button>
         <Divider orientation="vertical" flexItem sx={{ mx: 2, my: 1 }} />
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <IconButton onClick={handleAvatarClick} color="inherit">
-            <Avatar sx={{ width: 36, height: 36 }} src="/broken-image.jpg" />
-          </IconButton>
+          {!user && renderVisitorLinks()}
+          {user && user.role === 'customer' && renderUserLinks()}
+          {user && user.role === 'admin' && renderAdminLinks()}
           <IconButton color="inherit" onClick={toggleTheme}>
             {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
           </IconButton>
