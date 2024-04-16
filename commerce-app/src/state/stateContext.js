@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { useProducts } from "../hooks/useContextProducts.js";
+import { useProducts } from "../hooks/useProducts.js";
 
 const AppStateContext = createContext();
 

@@ -27,11 +27,58 @@ function SignupPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Add validation for passwords match, fields required etc.
-    // Submit formData to server
-    console.log(formData);
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3001/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password, // Note: In a real application, consider securing this transmission.
+          profile: {
+            firstName: "John", // You might want to collect this in the form
+            lastName: "Doe",
+            companyName: formData.companyName,
+            position: "CEO",
+          },
+          contact: {
+            phone: formData.phone,
+            address: {
+              street: "1234 Business Rd",
+              city: "Commerce City",
+              state: "Business State",
+              zipCode: "12345",
+              country: "Business Country",
+            },
+          },
+          email: formData.email,
+          settings: {
+            theme: "light",
+            language: "en",
+          },
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert("Signup successful");
+        console.log(data); // Process success response, e.g., redirect or login the user
+      } else {
+        alert("Signup failed: " + data.message); // Handle errors, such as user already exists
+      }
+    } catch (error) {
+      console.error("Signup failed:", error);
+      alert("Signup failed, please try again later.");
+    }
   };
 
   return (

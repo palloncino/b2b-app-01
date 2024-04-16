@@ -5,10 +5,12 @@ const cors = require("cors");
 
 const app = express();
 const PORT = 3001;
+const SECRET_KEY = 'your_secret_key';
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
+const usersFilePath = path.join(__dirname, "/database/users.json");
 const productsFilePath = path.join(__dirname, "/database/products.json");
 
 // Helper function to read data from a JSON file
@@ -26,6 +28,48 @@ const readDataFromFile = (filePath) => {
 const writeProductsToFile = (data, filePath) => {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2)); // Pretty print the JSON
 };
+
+// Authenticate User
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  const users = readDataFromFile(usersFilePath);
+  const user = users.find(u => u.username === username && u.password === password);
+
+  if (user) {
+    const token = jwt.sign(
+      { id: user.id, username: user.username, role: user.role },
+      SECRET_KEY,
+      { expiresIn: '1h' }  // Token expires in 1 hour
+    );
+    res.json({ message: "Authentication successful!", token });
+  } else {
+    res.status(401).json({ message: "Invalid username or password" });
+  }
+});
+
+app.post("/signup", (req, res) => {
+  const newUser = req.body; // Assuming the body contains all necessary user fields
+  const users = readDataFromFile(usersFilePath);
+
+  // Check if the username or email already exists
+  if (users.some(user => user.username === newUser.username || user.email === newUser.email)) {
+    return res.status(400).json({ message: "Username or email already exists" });
+  }
+
+  // Assign a new unique identifier
+  newUser.id = Date.now().toString();
+
+  // Adding creation and update timestamps
+  const timestamp = new Date().toISOString();
+  newUser.createdAt = timestamp;
+  newUser.updatedAt = timestamp;
+
+  // Append the new user to the users array
+  users.push(newUser);
+  writeDataToFile(users, usersFilePath);
+
+  res.status(201).json(newUser); // Return the new user object
+});
 
 app.get("/get-products", (req, res) => {
   const products = readDataFromFile(productsFilePath);

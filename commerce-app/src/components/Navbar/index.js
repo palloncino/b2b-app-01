@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography, Button, IconButton, Avatar, Box, Divider }
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../state/authContext'; // Assuming you have an auth context
+import { useAuth } from '../../hooks/useAuth.js';
 import { useThemeContext } from '../../state/themeContext.js';
 
 function Navbar() {

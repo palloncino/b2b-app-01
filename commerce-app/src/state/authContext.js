@@ -1,42 +1,37 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+// context/AuthContext.js
+import React, { createContext, useContext } from "react";
+import { useAuth } from "../hooks/useAuth"; // Corrected import to match the hook's name
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
+
+export function useAuthContext() {
+  return useContext(AuthContext);
+}
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+  const {
+    user,
+    login,
+    loginIsLoading,
+    loginError,
+    signup,
+    signupIsLoading,
+    signupError,
+  } = useAuth();
 
-    useEffect(() => {
-        // Check local storage for user data on initial load
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    }, []);
+  const state = {
+    user,
+    login,
+    loginIsLoading,
+    loginError,
+    signup,
+    signupIsLoading,
+    signupError,
+  };
 
-    const login = async (username, password) => {
-        // Implement your API call here
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
-        });
-        if (response.ok) {
-            const userData = await response.json();
-            localStorage.setItem('user', JSON.stringify(userData));
-            setUser(userData);
-        }
-    };
-
-    const logout = () => {
-        localStorage.removeItem('user');
-        setUser(null);
-    };
-
-    return (
-        <AuthContext.Provider value={{ user, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={state}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
-
-export const useAuth = () => useContext(AuthContext);

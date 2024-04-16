@@ -16,7 +16,8 @@ import EditProduct from "./pages/product/edit-product-page.js";
 import ProductListPage from "./pages/product/product-list-page.js";
 import ProductPage from "./pages/product/product-page.js";
 import UserManagement from "./pages/user/user-management-page.js";
-import { AuthProvider, useAuth } from "./state/authContext.js";
+import { AuthProvider } from "./state/authContext.js";
+import { useAuth } from "./hooks/useAuth.js";
 import { AppStateProvider } from "./state/stateContext.js";
 import { ThemeProvider } from "./state/themeContext.js";
 
