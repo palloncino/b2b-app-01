@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from "react";
 import { useProducts } from "../hooks/useContextProducts.js";
+import { usePreventives } from "../hooks/useContextPreventives.js";
 
 const AppStateContext = createContext();
 
@@ -23,6 +24,12 @@ export const AppStateProvider = ({ children }) => {
     deleteProductIsLoading,
     deleteProductError,
   } = useProducts();
+  const {
+    preventives,
+    loadingPreventives,
+    preventivesError,
+    getPreventives,
+  } = usePreventives();
 
   const state = {
     /*
@@ -40,7 +47,14 @@ export const AppStateProvider = ({ children }) => {
     editProductError,
     deleteProducts,
     deleteProductIsLoading,
-    deleteProductError
+    deleteProductError,
+    /*
+      Preventives
+    */
+    preventives,
+    loadingPreventives,
+    preventivesError,
+    getPreventives,
   };
 
   return (

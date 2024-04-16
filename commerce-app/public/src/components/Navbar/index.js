@@ -22,6 +22,12 @@ function Navbar() {
         <Button color="inherit" component={RouterLink} to="/client-management">
           Client Management
         </Button>
+        <Button color="inherit" component={RouterLink} to="/create-preventive">
+          Create Preventive
+        </Button>
+        <Button color="inherit" component={RouterLink} to="/preventive-archive">
+          Preventive Archive
+        </Button>
         <Button color="inherit" component={RouterLink} to="/product-archive">
           Product Archive
         </Button>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/index.js";
 import ClientManagement from "./pages/client-management-page.js";
 import Dashboard from "./pages/dashboard-page.js";
 import CreateProduct from "./pages/create-product-page.js";

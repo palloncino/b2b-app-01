@@ -1,6 +1,6 @@
 import React from "react";
 import { dateText } from "../../utils/date-text.js";
-import Highlight from "../HighlightText";
+import Highlight from "../HighlightText/index.js";
 import "./preventive-list.css";
 
 function PreventiveList({ preventives, search }) {
