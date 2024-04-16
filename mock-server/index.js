@@ -10,7 +10,6 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
 const productsFilePath = path.join(__dirname, "/database/products.json");
-const preventivesFilePath = path.join(__dirname, "/database/preventives.json");
 
 // Helper function to read data from a JSON file
 const readDataFromFile = (filePath) => {
@@ -95,11 +94,6 @@ app.post("/delete-products", (req, res) => {
 
   // Respond with a success message
   res.status(200).send({ids: idsToDelete, message: `Products with IDs: ${idsToDelete.join(", ")} were successfully deleted.`});
-});
-
-app.get("/get-preventives", (req, res) => {
-  const preventives = readDataFromFile(preventivesFilePath);
-  res.status(200).json(preventives);
 });
 
 app.listen(PORT, () => {
