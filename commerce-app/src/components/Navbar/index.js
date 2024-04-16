@@ -18,7 +18,7 @@ function Navbar() {
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Button color="inherit" component={RouterLink} to="/">
-            BUSINESS LOGO
+            🏡 HOMEPAGE
           </Button>
         </Typography>
         <Button color="inherit" component={RouterLink} to="/product-archive">
