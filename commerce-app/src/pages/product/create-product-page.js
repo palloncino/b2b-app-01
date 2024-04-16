@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
 import React, { useRef, useState } from "react";
-import CreateProduct from "../components/CreateProduct/index.js";
-import FlashMessage from "../components/FlashMessage";
-import Loading from "../components/Loading";
-import { useAppState } from "../state/stateContext";
+import CreateProduct from "../../components/CreateProduct/index.js";
+import FlashMessage from "../../components/FlashMessage/index.js";
+import Loading from "../../components/Loading/index.js";
+import { useAppState } from "../../state/stateContext.js";
 
 function CreateProductPage() {
   const { addProduct } = useAppState();

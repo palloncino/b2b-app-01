@@ -1,12 +1,11 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/index.js";
-import ClientManagement from "./pages/client-management-page.js";
 import Dashboard from "./pages/dashboard-page.js";
-import CreateProduct from "./pages/create-product-page.js";
-import ProductListPage from "./pages/product-list-page.js";
-import ProductPage from "./pages/product-page.js";
-import EditProduct from "./pages/edit-product-page.js";
+import CreateProduct from "./pages/product/create-product-page.js";
+import ProductListPage from "./pages/product/product-list-page.js";
+import ProductPage from "./pages/product/product-page.js";
+import EditProduct from "./pages/product/edit-product-page.js";
 import UserManagement from "./pages/user-management-page.js";
 import { AppStateProvider } from "./state/stateContext.js";
 import { ThemeProvider } from "./state/themeContext.js";
@@ -22,7 +21,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/user-management" element={<UserManagement />} />
-              <Route path="/client-management" element={<ClientManagement />} />
               <Route path="/create-product" element={<CreateProduct />} />
               <Route path="/product-archive" element={<ProductListPage />} />
               <Route path="/product/:productId" element={<ProductPage />} />

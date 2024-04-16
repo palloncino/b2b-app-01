@@ -8,9 +8,9 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import ProductView from "../components/ProductView/index.js";
-import Loading from "../components/Loading/index.js";
-import { useAppState } from "../state/stateContext.js";
+import ProductView from "../../components/ProductView/index.js";
+import Loading from "../../components/Loading/index.js";
+import { useAppState } from "../../state/stateContext.js";
 
 function ProductPage() {
   const { productId } = useParams();

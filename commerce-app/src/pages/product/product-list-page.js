@@ -1,13 +1,13 @@
 import { Button, Container, Grid, Paper, Typography } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import FilterBar from "../components/FilterBar/index.js";
-import FlashMessage from "../components/FlashMessage/index.js";
-import Loading from "../components/Loading/index.js";
-import ProductList from "../components/ProductList/index.js";
-import { PRODUCTS_FILTERS_CONFIG } from "../constants/index.js";
-import { useAppState } from "../state/stateContext.js";
-import applyFilters from "../utils/apply-filters.js";
+import FilterBar from "../../components/FilterBar/index.js";
+import FlashMessage from "../../components/FlashMessage/index.js";
+import Loading from "../../components/Loading/index.js";
+import ProductList from "../../components/ProductList/index.js";
+import { PRODUCTS_FILTERS_CONFIG } from "../../constants/index.js";
+import { useAppState } from "../../state/stateContext.js";
+import applyFilters from "../../utils/apply-filters.js";
 
 function ProductListPage() {
   const { products, deleteProducts, getProducts, loadingProducts } = useAppState();

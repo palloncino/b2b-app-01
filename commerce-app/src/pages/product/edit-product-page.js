@@ -7,10 +7,10 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import EditProduct from "../components/EditProduct";
-import FlashMessage from "../components/FlashMessage";
-import Loading from "../components/Loading";
-import { useAppState } from "../state/stateContext.js";
+import EditProduct from "../../components/EditProduct/index.js";
+import FlashMessage from "../../components/FlashMessage/index.js";
+import Loading from "../../components/Loading/index.js";
+import { useAppState } from "../../state/stateContext.js";
 
 function EditProductPage() {
   const { productId } = useParams();

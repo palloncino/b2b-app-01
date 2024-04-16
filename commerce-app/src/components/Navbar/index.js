@@ -1,9 +1,9 @@
-import React from "react";
-import { AppBar, Toolbar, Typography, Button, IconButton } from "@mui/material";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import { useThemeContext } from "../../state/themeContext.js";
-import { Link as RouterLink } from "react-router-dom";
+import React from 'react';
+import { AppBar, Toolbar, Typography, Button, IconButton, Avatar, Box, Divider } from '@mui/material';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import { Link as RouterLink } from 'react-router-dom';
+import { useThemeContext } from '../../state/themeContext.js';
 
 function Navbar() {
   const { toggleTheme, themeMode } = useThemeContext();
@@ -16,18 +16,16 @@ function Navbar() {
             BUSINESS LOGO
           </Button>
         </Typography>
-        <Button color="inherit" component={RouterLink} to="/user-management">
-          User Management
-        </Button>
-        <Button color="inherit" component={RouterLink} to="/client-management">
-          Client Management
-        </Button>
         <Button color="inherit" component={RouterLink} to="/product-archive">
           Product Archive
         </Button>
-        <IconButton color="inherit" onClick={toggleTheme}>
-        {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
-        </IconButton>
+        <Divider orientation="vertical" flexItem sx={{ mx: 2, my: 1 }} />
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Avatar sx={{ width: 36, height: 36 }} src="/broken-image.jpg" />
+          <IconButton color="inherit" onClick={toggleTheme}>
+            {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+          </IconButton>
+        </Box>
       </Toolbar>
     </AppBar>
   );
