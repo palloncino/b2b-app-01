@@ -1,5 +1,7 @@
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
+import React, { useState } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../state/authContext";
+import { useThemeContext } from "../../state/themeContext";
 import {
   AppBar,
   Avatar,
@@ -7,36 +9,42 @@ import {
   Button,
   Divider,
   IconButton,
+  Menu,
+  MenuItem,
   Toolbar,
-  Typography,
+  Typography
 } from "@mui/material";
-import React from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../state/authContext.js";
-import { useThemeContext } from "../../state/themeContext.js";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 function Navbar() {
-  const { user } = useAuthContext();
+  const { user, logout } = useAuthContext();
   const { toggleTheme, themeMode } = useThemeContext();
   const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleAvatarClick = () => {
-    // Navigate based on role
-    if (user && user.role === "admin") {
-      navigate("/user-management");
-    } else {
-      navigate("/profile");
-    }
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleProfileClick = () => {
+    navigate("/profile");
+    handleMenuClose();
+  };
+
+  const handleLogoutClick = () => {
+    logout();
+    handleMenuClose();
   };
 
   const renderVisitorLinks = () => (
     <>
-      <Button color="inherit" component={RouterLink} to="/login">
-        Login
-      </Button>
-      <Button color="inherit" component={RouterLink} to="/signup">
-        Sign Up
-      </Button>
+      <Button color="inherit" component={RouterLink} to="/login">Login</Button>
+      <Button color="inherit" component={RouterLink} to="/signup">Sign Up</Button>
     </>
   );
 
@@ -45,11 +53,19 @@ function Navbar() {
       <Button color="inherit" component={RouterLink} to="/product-archive">
         Product Archive
       </Button>
-      <IconButton onClick={handleAvatarClick} color="inherit">
+      <IconButton onClick={handleMenuOpen} color="inherit">
         <Avatar sx={{ width: 36, height: 36 }}>
           {user ? user.username.charAt(0) : ""}
         </Avatar>
       </IconButton>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleProfileClick}>View Profile</MenuItem>
+        <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
+      </Menu>
     </>
   );
 

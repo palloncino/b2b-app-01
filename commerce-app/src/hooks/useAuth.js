@@ -59,7 +59,14 @@ export const useAuth = () => {
     } finally {
       setLoginIsLoading(false);
     }
-  }, []);
+  }, [navigate]);
+
+  const logout = useCallback(() => {
+    localStorage.removeItem("authToken");  
+    setUser(null);                         
+    setToken(null);                        
+    navigate('/login');                    
+  }, [navigate]);
 
   const signup = useCallback(async (userData) => {
     setSignupIsLoading(true);
@@ -90,6 +97,7 @@ export const useAuth = () => {
     user,
     token,
     isLoadingAuthorization,
+    logout,
     login,
     loginIsLoading,
     loginError,
