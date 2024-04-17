@@ -14,7 +14,7 @@ function Dashboard() {
     <div id="Dashboard" className="dashboard-container">
       <h1>Dashboard</h1>
       <p>
-        Welcome to the Dashboard{user ? `, ${user.username}` : ""}. Here you
+        Welcome to the Dashboard<strong>{user ? `, ${user.username}` : ""}</strong>. Here you
         can quickly access all key areas of the application.
       </p>
     </div>

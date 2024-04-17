@@ -25,7 +25,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
   const { user, isLoadingAuthorization } = useAuth();
   const navigate = useNavigate();
 
-  console.log('ProtectedRoute', {user})
+  console.log("ProtectedRoute", { user });
 
   useEffect(() => {
     if (isLoadingAuthorization) {
@@ -43,10 +43,10 @@ const ProtectedRoute = ({ allowedRoles }) => {
 
 function App() {
   return (
-    <AuthProvider>
-      <AppStateProvider>
-        <ThemeProvider>
-          <Router>
+    <Router>
+      <AuthProvider>
+        <AppStateProvider>
+          <ThemeProvider>
             <Navbar />
             <Container component="main" maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
               <Routes>
@@ -78,10 +78,10 @@ function App() {
                 </Route>
               </Routes>
             </Container>
-          </Router>
-        </ThemeProvider>
-      </AppStateProvider>
-    </AuthProvider>
+          </ThemeProvider>
+        </AppStateProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { request } from "../utils/request";
+import { useNavigate } from 'react-router-dom';
 
 export const useAuth = () => {
   const [isLoadingAuthorization, setIsLoadingAuthorization] = useState(true);
@@ -9,6 +10,13 @@ export const useAuth = () => {
   const [loginError, setLoginError] = useState(null);
   const [signupIsLoading, setSignupIsLoading] = useState(false);
   const [signupError, setSignupError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user && token) {
+      navigate('/');  // Navigate to dashboard or a desired route after successful login
+    }
+  }, [user, token, navigate]);
 
   useEffect(() => {
     const verifyToken = async () => {

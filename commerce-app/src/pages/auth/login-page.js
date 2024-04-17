@@ -12,11 +12,9 @@ import {
 } from "@mui/material";
 import FlashMessage from "../../components/FlashMessage";
 import { useAuthContext } from "../../state/authContext";
-import { useNavigate } from 'react-router-dom';
 
 
 function LoginPage() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -38,7 +36,6 @@ function LoginPage() {
     if (formData.username && formData.password) {
       try {
         await login({ username: formData.username, password: formData.password });
-        navigate('/');
       } catch (error) {
         alert('Login Failed: ' + error.message); // Display error message to the user
       }
