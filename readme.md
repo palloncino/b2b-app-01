@@ -1,5 +1,7 @@
 # API Docs
 
+### ⚠️ Visit https://github.com/palloncino/b2b-app-01/blob/master/mock-server/index.js to see the specific API endpoint functionality
+
 <h2>🎯 Verify Token</h2>
 <p><strong>Endpoint:</strong> POST /verify-token</p>
 <p><strong>Description:</strong> Verifies JWT for authenticity and fetches the associated user details.</p>
