@@ -13,12 +13,6 @@ export const useAuth = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && token) {
-      navigate('/');
-    }
-  }, [user, token, navigate]);
-
-  useEffect(() => {
     const verifyToken = async () => {
       const storedToken = localStorage.getItem("authToken");
       if (storedToken) {
@@ -58,6 +52,7 @@ export const useAuth = () => {
       setUser(user);
       localStorage.setItem("authToken", token);
       setToken(token);
+      navigate('/');
     } catch (err) {
       setLoginError(err.message);
       setUser(null);
