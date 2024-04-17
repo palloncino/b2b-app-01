@@ -47,9 +47,9 @@ function App() {
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/" element={<Dashboard />} />
 
                 {/* Routes accessible by both customers and admins */}
+                <Route path="/" element={<Dashboard />} />
                 <Route
                   element={
                     <ProtectedRoute allowedRoles={["customer", "admin"]} />

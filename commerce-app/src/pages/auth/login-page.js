@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -9,14 +10,20 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import FlashMessage from "../../components/FlashMessage";
+import { useAuthContext } from "../../state/authContext";
+import { useNavigate } from 'react-router-dom';
+
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     rememberMe: false,
   });
+
+  const { login, loginIsLoading, loginError } = useAuthContext(); // Use the context to access the login function
 
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
@@ -26,11 +33,19 @@ function LoginPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement your authentication logic here
-    console.log(formData);
-  };
+    if (formData.username && formData.password) {
+      try {
+        await login({ username: formData.username, password: formData.password });
+        navigate('/');
+      } catch (error) {
+        alert('Login Failed: ' + error.message); // Display error message to the user
+      }
+    } else {
+      alert("Please fill in all required fields."); // Prompt to fill all fields
+    }
+};
 
   return (
     <Container component="main" maxWidth="xs">
@@ -87,9 +102,11 @@ function LoginPage() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            disabled={loginIsLoading}
           >
             Sign In
           </Button>
+          {loginError && <FlashMessage message={loginError} type="error" />}
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">

@@ -1,6 +1,7 @@
 export const request = async ({ url, method = 'GET', body = null, headers = {} }) => {
   const defaultHeaders = {
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
   };
 
   // Retrieve the auth token if it exists

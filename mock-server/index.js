@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const PORT = 3001;
@@ -41,7 +42,7 @@ app.post("/login", (req, res) => {
       SECRET_KEY,
       { expiresIn: '1h' }  // Token expires in 1 hour
     );
-    res.json({ message: "Authentication successful!", token });
+    res.status(200).json({ message: "Authentication successful!", token });
   } else {
     res.status(401).json({ message: "Invalid username or password" });
   }

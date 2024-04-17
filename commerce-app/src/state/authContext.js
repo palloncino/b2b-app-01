@@ -11,6 +11,7 @@ export function useAuthContext() {
 export const AuthProvider = ({ children }) => {
   const {
     user,
+    token,
     login,
     loginIsLoading,
     loginError,
@@ -21,6 +22,7 @@ export const AuthProvider = ({ children }) => {
 
   const state = {
     user,
+    token,
     login,
     loginIsLoading,
     loginError,
