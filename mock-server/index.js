@@ -30,7 +30,35 @@ const writeProductsToFile = (data, filePath) => {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2)); // Pretty print the JSON
 };
 
-// Authenticate User
+app.post("/verify-token", (req, res) => {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.status(400).json({ message: "Token is required" });
+  }
+
+  try {
+    // Verify the token using the same secret key and options used to sign it
+    const decoded = jwt.verify(token, SECRET_KEY);
+    // Optionally, fetch user details from the database or storage
+    const users = readDataFromFile(usersFilePath);
+    const user = users.find(u => u.id === decoded.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Return the verified user data or a simple success message
+    res.json({
+      message: "Token verified successfully",
+      user: { id: user.id, username: user.username, role: user.role }
+    });
+  } catch (err) {
+    // Catch and return errors such as token expiration or invalid token
+    res.status(401).json({ message: "Invalid or expired token", error: err.message });
+  }
+});
+
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   const users = readDataFromFile(usersFilePath);

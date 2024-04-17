@@ -11,14 +11,15 @@ export const useAuth = () => {
 
   useEffect(() => {
     const verifyToken = async () => {
-      if (token) {
+      const storedToken = localStorage.getItem('authToken');
+      if (storedToken) {
         try {
           const response = await request({
-            url: `${process.env.REACT_APP_API_URL}/verifyToken`,
+            url: `${process.env.REACT_APP_API_URL}/verify-token`,
             method: "POST",
-            body: { token },
+            body: { token: storedToken },
           });
-          setUser(response.user); // Assuming the response will have user data if token is valid
+          setUser(response.user); // Assuming the response will include user data if token is valid
         } catch (error) {
           console.log("Token validation failed", error);
           setUser(null);
@@ -26,9 +27,9 @@ export const useAuth = () => {
         }
       }
     };
-
+  
     verifyToken();
-  }, [token]);
+  }, []);
 
   const login = useCallback(async (credentials) => {
     setLoginIsLoading(true);
