@@ -14,7 +14,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     if (user && token) {
-      navigate('/');  // Navigate to dashboard or a desired route after successful login
+      navigate('/');
     }
   }, [user, token, navigate]);
 
@@ -31,7 +31,7 @@ export const useAuth = () => {
           setUser(response.user);
           setIsLoadingAuthorization(false); // Set loading to false after verification
         } catch (error) {
-          console.log("Token validation failed", error);
+          console.error("Token validation failed", error);
           setUser(null);
           localStorage.removeItem("authToken");
           setIsLoadingAuthorization(false);
@@ -53,10 +53,11 @@ export const useAuth = () => {
         method: "POST",
         body: credentials,
       });
-      const data = response;
-      setUser(data);
-      localStorage.setItem("authToken", data.token);
-      setToken(data.token);
+      // const data  = response.json();
+      const { token, user } = response;
+      setUser(user);
+      localStorage.setItem("authToken", token);
+      setToken(token);
     } catch (err) {
       setLoginError(err.message);
       setUser(null);

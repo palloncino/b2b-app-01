@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -12,11 +12,11 @@ import {
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth.js";
+import { useAuthContext } from "../../state/authContext.js";
 import { useThemeContext } from "../../state/themeContext.js";
 
 function Navbar() {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const { toggleTheme, themeMode } = useThemeContext();
   const navigate = useNavigate();
 

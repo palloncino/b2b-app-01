@@ -30,9 +30,6 @@ function EditProductPage() {
   }, [productId, products]);
 
   if (!theProduct) {
-
-    console.log(getProductsIsLoading)
-
     if (getProductsIsLoading || editProductIsLoading) {
       return <Loading />;
     }

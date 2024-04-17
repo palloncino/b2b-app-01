@@ -35,8 +35,6 @@ function ProductListPage() {
         const response = await deleteProducts([id]);
         const { message } = response;
         setSuccessMessage(message);
-      } else {
-        console.log("Delete operation was cancelled by the user.");
       }
     } catch (error) {
       console.error(error);

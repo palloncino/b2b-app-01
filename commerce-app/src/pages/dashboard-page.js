@@ -4,12 +4,6 @@ import { useAuthContext } from "../state/authContext"; // Adjust the import path
 function Dashboard() {
   const { user } = useAuthContext(); // Access user data from context
 
-  useEffect(() => {
-    if (user) {
-      console.log({ username: user.username });
-    }
-  }, [user]);
-
   return (
     <div id="Dashboard" className="dashboard-container">
       <h1>Dashboard</h1>

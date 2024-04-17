@@ -71,7 +71,6 @@ function SignupPage() {
       const data = await response.json();
       if (response.ok) {
         alert("Signup successful");
-        console.log(data); // Process success response, e.g., redirect or login the user
       } else {
         alert("Signup failed: " + data.message); // Handle errors, such as user already exists
       }

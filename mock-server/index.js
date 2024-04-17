@@ -51,7 +51,7 @@ app.post("/verify-token", (req, res) => {
     // Return the verified user data or a simple success message
     res.json({
       message: "Token verified successfully",
-      user: { id: user.id, username: user.username, role: user.role }
+      user
     });
   } catch (err) {
     // Catch and return errors such as token expiration or invalid token
@@ -70,7 +70,7 @@ app.post("/login", (req, res) => {
       SECRET_KEY,
       { expiresIn: '1h' }  // Token expires in 1 hour
     );
-    res.status(200).json({ message: "Authentication successful!", token });
+    res.status(200).json({ message: "Authentication successful!", token, user });
   } else {
     res.status(401).json({ message: "Invalid username or password" });
   }

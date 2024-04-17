@@ -24,9 +24,6 @@ import { ThemeProvider } from "./state/themeContext.js";
 const ProtectedRoute = ({ allowedRoles }) => {
   const { user, isLoadingAuthorization } = useAuth();
   const navigate = useNavigate();
-
-  console.log("ProtectedRoute", { user });
-
   useEffect(() => {
     if (isLoadingAuthorization) {
       return;

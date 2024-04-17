@@ -1,6 +1,5 @@
-// context/AuthContext.js
-import React, { createContext, useContext } from "react";
-import { useAuth } from "../hooks/useAuth"; // Corrected import to match the hook's name
+import React, { createContext, useContext, useMemo } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const AuthContext = createContext();
 
@@ -9,32 +8,14 @@ export function useAuthContext() {
 }
 
 export const AuthProvider = ({ children }) => {
-  const {
-    user,
-    token,
-    isLoadingAuthorization,
-    login,
-    loginIsLoading,
-    loginError,
-    signup,
-    signupIsLoading,
-    signupError,
-  } = useAuth();
+  const auth = useAuth();
 
-  const state = {
-    user,
-    token,
-    isLoadingAuthorization,
-    login,
-    loginIsLoading,
-    loginError,
-    signup,
-    signupIsLoading,
-    signupError,
-  };
+  const providerValue = useMemo(() => ({
+    ...auth
+  }), [auth]);
 
   return (
-    <AuthContext.Provider value={state}>
+    <AuthContext.Provider value={providerValue}>
       {children}
     </AuthContext.Provider>
   );

@@ -32,7 +32,6 @@ function ProductPage() {
   }, [productId, products]);
 
   if (!theProduct) {
-    console.log(getProductsIsLoading);
     if (getProductsIsLoading) {
       return <Loading />;
     } else {
