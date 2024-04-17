@@ -50,32 +50,25 @@ function App() {
             <Navbar />
             <Container component="main" maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
               <Routes>
+                
+                {/* Routes accessible by visitors */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
 
                 {/* Routes accessible by both customers and admins */}
-                <Route path="/" element={<Dashboard />} />
-                <Route
-                  element={
-                    <ProtectedRoute allowedRoles={["customer", "admin"]} />
-                  }
-                >
-                  <Route
-                    path="/product-archive"
-                    element={<ProductListPage />}
-                  />
+                <Route element={<ProtectedRoute allowedRoles={["customer", "admin"]} />}>
+                  <Route path="/"                   element={<Dashboard />} />
+                  <Route path="/product-archive"    element={<ProductListPage />} />
                   <Route path="/product/:productId" element={<ProductPage />} />
-                  <Route path="/user-management" element={<UserManagement />} />
+                  <Route path="/user-management"    element={<UserManagement />} />
                 </Route>
 
                 {/* Admin-only routes */}
                 <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
-                  <Route path="/create-product" element={<CreateProduct />} />
-                  <Route
-                    path="/edit-product/:productId"
-                    element={<EditProduct />}
-                  />
+                  <Route path="/create-product"          element={<CreateProduct />} />
+                  <Route path="/edit-product/:productId" element={<EditProduct />}/>
                 </Route>
+
               </Routes>
             </Container>
           </ThemeProvider>
