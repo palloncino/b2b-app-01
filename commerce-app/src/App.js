@@ -22,16 +22,21 @@ import { AppStateProvider } from "./state/stateContext.js";
 import { ThemeProvider } from "./state/themeContext.js";
 
 const ProtectedRoute = ({ allowedRoles }) => {
-  const { user } = useAuth();
+  const { user, isLoadingAuthorization } = useAuth();
   const navigate = useNavigate();
 
+  console.log('ProtectedRoute', {user})
+
   useEffect(() => {
+    if (isLoadingAuthorization) {
+      return;
+    }
     if (!user) {
       navigate("/login", { replace: true });
     } else if (!allowedRoles.includes(user.role)) {
       navigate("/", { replace: true });
     }
-  }, [user, navigate, allowedRoles]);
+  }, [user, navigate, allowedRoles, isLoadingAuthorization]);
 
   return user && allowedRoles.includes(user.role) ? <Outlet /> : null;
 };
@@ -60,11 +65,11 @@ function App() {
                     element={<ProductListPage />}
                   />
                   <Route path="/product/:productId" element={<ProductPage />} />
+                  <Route path="/user-management" element={<UserManagement />} />
                 </Route>
 
                 {/* Admin-only routes */}
                 <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
-                  <Route path="/user-management" element={<UserManagement />} />
                   <Route path="/create-product" element={<CreateProduct />} />
                   <Route
                     path="/edit-product/:productId"

@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { request } from "../utils/request";
 
 export const useAuth = () => {
+  const [isLoadingAuthorization, setIsLoadingAuthorization] = useState(true);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("authToken"));
   const [loginIsLoading, setLoginIsLoading] = useState(false);
@@ -11,7 +12,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     const verifyToken = async () => {
-      const storedToken = localStorage.getItem('authToken');
+      const storedToken = localStorage.getItem("authToken");
       if (storedToken) {
         try {
           const response = await request({
@@ -19,15 +20,19 @@ export const useAuth = () => {
             method: "POST",
             body: { token: storedToken },
           });
-          setUser(response.user); // Assuming the response will include user data if token is valid
+          setUser(response.user);
+          setIsLoadingAuthorization(false); // Set loading to false after verification
         } catch (error) {
           console.log("Token validation failed", error);
           setUser(null);
           localStorage.removeItem("authToken");
+          setIsLoadingAuthorization(false);
         }
+      } else {
+        setIsLoadingAuthorization(false); // No token found, not loading
       }
     };
-  
+
     verifyToken();
   }, []);
 
@@ -80,6 +85,7 @@ export const useAuth = () => {
   return {
     user,
     token,
+    isLoadingAuthorization,
     login,
     loginIsLoading,
     loginError,

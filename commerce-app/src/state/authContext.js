@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
   const {
     user,
     token,
+    isLoadingAuthorization,
     login,
     loginIsLoading,
     loginError,
@@ -23,6 +24,7 @@ export const AuthProvider = ({ children }) => {
   const state = {
     user,
     token,
+    isLoadingAuthorization,
     login,
     loginIsLoading,
     loginError,
