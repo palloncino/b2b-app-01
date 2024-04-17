@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  Avatar,
-  Box,
-  Divider,
-} from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import React from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../state/authContext.js";
 import { useThemeContext } from "../../state/themeContext.js";
