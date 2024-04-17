@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuthContext } from "../state/authContext"; // Adjust the import path as necessary
 
 function Dashboard() {
@@ -8,8 +8,10 @@ function Dashboard() {
     <div id="Dashboard" className="dashboard-container">
       <h1>Dashboard</h1>
       <p>
-        Welcome to the Dashboard<strong>{user ? `, ${user.username}` : ""}</strong>. Here you
-        can quickly access all key areas of the application.
+        Welcome <strong>{user ? `${user.username}` : ""}</strong>.
+      </p>
+      <p>
+        Your role is <strong>{user ? `${user.role}` : ""}</strong>.
       </p>
     </div>
   );

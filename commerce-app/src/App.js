@@ -8,6 +8,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import { useAuth } from "./hooks/useAuth.js";
 import Login from "./pages/auth/login-page.js";
 import Signup from "./pages/auth/signup-page.js";
 import Dashboard from "./pages/dashboard-page.js";
@@ -17,7 +18,6 @@ import ProductListPage from "./pages/product/product-list-page.js";
 import ProductPage from "./pages/product/product-page.js";
 import UserManagement from "./pages/user/user-management-page.js";
 import { AuthProvider } from "./state/authContext.js";
-import { useAuth } from "./hooks/useAuth.js";
 import { AppStateProvider } from "./state/stateContext.js";
 import { ThemeProvider } from "./state/themeContext.js";
 

@@ -1,3 +1,7 @@
+# API specs
+
+
+
 # User Model 🙋🏻‍♂️
 
 Below is the JSON format of the user model used in our application. This model is designed to be flexible enough to handle both customer and admin roles.
