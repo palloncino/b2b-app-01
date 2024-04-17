@@ -56,41 +56,9 @@ function ProductListPage() {
         <Loading />
       ) : (
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Paper sx={{ p: 2 }}>
-              <Typography variant="h5" gutterBottom>
-                Filters Overview
-              </Typography>
-              <Typography>
-                Our dynamic filtering system makes it easy to find the perfect
-                product:
-              </Typography>
-              <ul>
-                <li>
-                  Keyword Search: Quickly discover products by ID, name, or
-                  description using our case-insensitive search.
-                </li>
-                <li>
-                  Category Filter: Narrow down your search by selecting specific
-                  categories.
-                </li>
-              </ul>
-              <Typography variant="h5" gutterBottom>
-                Create a New Product
-              </Typography>
-              <Typography>
-                Ready to add a new product to your catalog?
-              </Typography>
-              <Button
-                component={RouterLink}
-                to="/create-product"
-                variant="contained"
-                sx={{ mt: 1 }}
-              >
-                Create Product
-              </Button>
-            </Paper>
-          </Grid>
+
+          
+          
           <Grid item xs={12}>
             <FilterBar
               filtersConfig={PRODUCTS_FILTERS_CONFIG}
