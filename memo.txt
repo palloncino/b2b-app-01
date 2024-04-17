@@ -1,0 +1,13 @@
+1. DEMO app, login, routes and listing.
+2. Can we be definitive in the description of models like User, and Products?
+3. Is visitor, customer and admin (editor) a viable solution?
+4. Is there a UI/UX design, or is it open question?
+5. Is the current FE architecture viable:
+    - Dashboard/Homepage
+    - Product listing
+    - User management
+    - Checkout (?)
+    - Payments (Do we have third party preferences?)
+    - Add missing steps
+6. Is the API description correct? How is the backend going to adapt to the current API schema.
+7. Are there business specific requirements?

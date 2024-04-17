@@ -83,7 +83,7 @@ function Navbar() {
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Button color="inherit" component={RouterLink} to="/">
-            🏠 b2b-app-01
+            HOME
           </Button>
         </Typography>
         <Divider orientation="vertical" flexItem sx={{ mx: 2, my: 1 }} />
