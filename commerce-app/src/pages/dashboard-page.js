@@ -1,8 +1,8 @@
 import React from "react";
-import { useAuthContext } from "../state/authContext"; // Adjust the import path as necessary
+import { useAuthContext } from "../state/authContext";
 
 function Dashboard() {
-  const { user } = useAuthContext(); // Access user data from context
+  const { user } = useAuthContext();
 
   return (
     <div id="Dashboard" className="dashboard-container">

@@ -1,10 +1,21 @@
 import React from 'react';
+import { useAuthContext } from '../../state/authContext';
 
 function UserManagement() {
+  const { user } = useAuthContext();
+
   return (
     <div>
-      <h1>UserManagement</h1>
-      <p>Welcome to the UserManagement. Here you can quickly access all key areas of the application.</p>
+      {user ? (
+        <div>
+          <h2>User Details</h2>
+          <p><strong>Username:</strong> {user.username}</p>
+          <p><strong>Email:</strong> {user.email}</p>
+          <p><strong>Role:</strong> {user.role}</p>
+        </div>
+      ) : (
+        <p>No user data available.</p>
+      )}
     </div>
   );
 }

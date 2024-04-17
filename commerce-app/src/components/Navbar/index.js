@@ -32,7 +32,7 @@ function Navbar() {
   };
 
   const handleProfileClick = () => {
-    navigate("/profile");
+    navigate("/user-management");
     handleMenuClose();
   };
 
