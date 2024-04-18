@@ -18,7 +18,7 @@ export const useAuth = () => {
       if (storedToken) {
         try {
           const response = await request({
-            url: `${process.env.REACT_APP_API_URL}/verify-token`,
+            url: `${process.env.REACT_APP_API_URL}/auth/verify-token`,
             method: "POST",
             body: { token: storedToken },
           });
@@ -43,7 +43,7 @@ export const useAuth = () => {
     setLoginError(null);
     try {
       const response = await request({
-        url: `${process.env.REACT_APP_API_URL}/login`,
+        url: `${process.env.REACT_APP_API_URL}/auth/login`,
         method: "POST",
         body: credentials,
       });
@@ -73,7 +73,7 @@ export const useAuth = () => {
     setSignupError(null);
     try {
       const response = await request({
-        url: `${process.env.REACT_APP_API_URL}/signup`,
+        url: `${process.env.REACT_APP_API_URL}/auth/signup`,
         method: "POST",
         body: userData,
       });

@@ -25,7 +25,7 @@ export const useProducts = () => {
     setGetProductsIsLoading(true);
     try {
       const data = await request({
-        url: `${process.env.REACT_APP_API_URL}/get-products`,
+        url: `${process.env.REACT_APP_API_URL}/products/get-products`,
       });
       setProducts(data);
       setGetProcutsError(null);
@@ -40,7 +40,7 @@ export const useProducts = () => {
     setAddProductIsLoading(true);
     try {
       const data = await request({
-        url: `${process.env.REACT_APP_API_URL}/create-product`,
+        url: `${process.env.REACT_APP_API_URL}/products/create-product`,
         method: "POST",
         body: newProduct,
       });
@@ -58,7 +58,7 @@ export const useProducts = () => {
     setEditProductIsLoading(true);
     try {
       const data = await request({
-        url: `${process.env.REACT_APP_API_URL}/edit-product`,
+        url: `${process.env.REACT_APP_API_URL}/products/edit-product`,
         method: "POST",
         body: editedProduct,
       });
@@ -76,7 +76,7 @@ export const useProducts = () => {
     setDeleteProductIsLoading(true);
     try {
       const response = await request({
-        url: `${process.env.REACT_APP_API_URL}/delete-products`,
+        url: `${process.env.REACT_APP_API_URL}/products/delete-products`,
         method: "POST",
         body: { ids: productIds },
       });
