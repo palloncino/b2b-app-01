@@ -50,9 +50,6 @@ function Navbar() {
 
   const renderUserLinks = () => (
     <>
-      <Button color="inherit" component={RouterLink} to="/product-archive">
-        Product Archive
-      </Button>
       <IconButton onClick={handleMenuOpen} color="inherit">
         <Avatar sx={{ width: 36, height: 36 }}>
           {user ? user.username.charAt(0) : ""}

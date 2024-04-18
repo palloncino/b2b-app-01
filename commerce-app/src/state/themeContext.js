@@ -1,8 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-import {
-  createTheme,
-  ThemeProvider as MUIThemeProvider,
-} from "@mui/material/styles";
+import { createTheme, ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 
 const ThemeContext = createContext();
@@ -20,41 +17,41 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem("themeMode", themeMode);
   }, [themeMode]);
 
-  // Define custom colors for light and dark themes
+  // Define custom colors for light and dark themes with a more exotic touch for the light theme
   const getDesignTokens = (mode) => ({
     palette: {
       mode,
       primary: {
-        main: mode === "light" ? "#1976d2" : "#90caf9",
-        light: mode === "light" ? "#42a5f5" : "#e3f2fd",
-        dark: mode === "light" ? "#1565c0" : "#42a5f5",
+        main: mode === "light" ? "#26a69a" : "#90caf9", // A vibrant teal for light, calm blue for dark
+        light: mode === "light" ? "#64d8cb" : "#e3f2fd", // Lighter teal
+        dark: mode === "light" ? "#00796b" : "#42a5f5",  // Darker teal
         contrastText: mode === "light" ? "#fff" : "#000",
       },
       secondary: {
-        main: mode === "light" ? "#9c27b0" : "#f48fb1",
-        light: mode === "light" ? "#ba68c8" : "#f8bbd0",
-        dark: mode === "light" ? "#7b1fa2" : "#c2185b",
+        main: mode === "light" ? "#ff8f00" : "#f48fb1", // Bright amber for light, soft pink for dark
+        light: mode === "light" ? "#ffc046" : "#f8bbd0", // Light amber
+        dark: mode === "light" ? "#c56000" : "#c2185b",  // Dark amber
         contrastText: mode === "light" ? "#fff" : "#000",
       },
       error: {
         main: mode === "light" ? "#d32f2f" : "#ef9a9a",
       },
       warning: {
-        main: mode === "light" ? "#ed6c02" : "#ffa726",
+        main: mode === "light" ? "#ffa726" : "#ffb74d",
       },
       info: {
-        main: mode === "light" ? "#0288d1" : "#81d4fa",
+        main: mode === "light" ? "#29b6f6" : "#81d4fa",
       },
       success: {
-        main: mode === "light" ? "#2e7d32" : "#81c784",
+        main: mode === "light" ? "#66bb6a" : "#81c784",
       },
       background: {
-        default: mode === "light" ? "#f0f2f5" : "#121212",
-        paper: mode === "light" ? "#ffffff" : "#242424",
+        default: mode === "light" ? "#fffde7" : "#121212", // Light yellow background for light theme
+        paper: mode === "light" ? "#fff8e1" : "#242424",
       },
       text: {
-        primary: mode === "light" ? "#2e2e2e" : "#ffffff",
-        secondary: mode === "light" ? "#757575" : "#bcbcbc",
+        primary: mode === "light" ? "#004d40" : "#ffffff", // Dark teal text for light theme
+        secondary: mode === "light" ? "#00695c" : "#bcbcbc",
       },
       action: {
         active: mode === "light" ? "#6d6d6d" : "#ffffff",
