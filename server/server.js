@@ -4,7 +4,6 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
 const authRoutes = require('./routes/authRoutes');
-// const preventiveRoutes = require('./routes/preventiveRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 4023;
@@ -16,7 +15,6 @@ connectDB();
 
 app.use('/auth', authRoutes);
 app.use('/products', productRoutes);
-// app.use('/preventives', preventiveRoutes);
 
 
 app.listen(PORT, () => {
